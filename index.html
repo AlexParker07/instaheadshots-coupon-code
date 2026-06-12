@@ -1,136 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InstaHeadshots Profile Upgrade Tracker</title>
-<meta name="description" content="Free personal branding tracker for professionals using InstaHeadshots.">
-<style>
-:root{
---bg:#0f172a;
---card:#1e293b;
---line:#334155;
---text:#f1f5f9;
---muted:#94a3b8;
---accent:#22c55e;
-}
-*{box-sizing:border-box}
-body{
-margin:0;
-background:var(--bg);
-font-family:Arial,sans-serif;
-color:var(--text);
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:24px;
-min-height:100vh;
-}
-.card{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:16px;
-padding:24px;
-max-width:450px;
-width:100%;
-}
-h1{text-align:center}
-p{text-align:center;color:var(--muted)}
-.score{
-font-size:48px;
-font-weight:bold;
-text-align:center;
-margin:15px 0;
-}
-.check{
-display:block;
-margin:10px 0;
-}
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
-.primary{
-background:var(--accent);
-}
-.cta{
-display:block;
-margin-top:18px;
-text-decoration:none;
-background:#22c55e;
-color:#000;
-padding:14px;
-text-align:center;
-border-radius:10px;
-font-weight:bold;
-}
-footer{
-margin-top:20px;
-font-size:12px;
-color:var(--muted);
-text-align:center;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InstaHeadshots Profile Photo Prep Tracker</title>
+  <meta name="description" content="A free interactive InstaHeadshots prep tracker for planning better AI headshots before you generate them." />
+  <style>
+    :root{
+      --bg:#0f172a; --card:#1e293b; --line:#334155;
+      --text:#f1f5f9; --muted:#94a3b8; --accent:#38bdf8; --accent-2:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; font-family:Arial,Helvetica,sans-serif;
+      background:radial-gradient(1200px 600px at 50% -10%,#1b2740,transparent),var(--bg);
+      color:var(--text); display:flex; flex-direction:column; align-items:center; padding:24px;
+    }
+    h1{font-size:clamp(24px,5vw,38px); margin:32px 0 4px; text-align:center}
+    .sub{color:var(--muted); margin:0 0 28px; text-align:center; max-width:560px}
+    .card{
+      background:var(--card); border:1px solid var(--line); border-radius:16px;
+      padding:26px; width:100%; max-width:460px;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+    }
+    .score{
+      text-align:center; background:#0f1a2e; border:1px solid var(--line);
+      border-radius:14px; padding:18px; margin-bottom:18px;
+    }
+    .score .label{font-size:13px; color:var(--muted); margin-bottom:6px}
+    .score .value{font-size:42px; font-weight:800}
+    label{display:block; margin:12px 0; color:var(--text)}
+    input[type="checkbox"]{transform:scale(1.2); margin-right:10px}
+    select{
+      width:100%; margin:8px 0 14px; padding:12px; border-radius:10px;
+      background:#0f1a2e; color:var(--text); border:1px solid var(--line);
+    }
+    button{
+      width:100%; padding:14px 20px; border:none; border-radius:10px; cursor:pointer;
+      font-size:16px; font-weight:700; color:#04210f; background:var(--accent-2);
+    }
+    button:hover{background:#15803d}
+    .reset{margin-top:10px; background:transparent; color:var(--muted); font-weight:500; font-size:13px}
+    .reset:hover{background:transparent; color:var(--text)}
+    .tip{color:var(--muted); text-align:center; margin-top:14px; min-height:38px}
+    .cta{
+      display:block; margin:18px auto 0; width:100%; max-width:460px; text-decoration:none;
+      background:var(--accent); color:#07111f; font-weight:800; text-align:center;
+      padding:14px 18px; border-radius:10px;
+    }
+    .cta:hover{filter:brightness(1.05)}
+    footer{color:var(--muted); font-size:12px; margin-top:28px; max-width:560px; text-align:center}
+  </style>
 </head>
 <body>
+  <h1>📸 InstaHeadshots Prep Tracker</h1>
+  <p class="sub">Check your selfie readiness before generating AI headshots. Your checklist is saved in this browser.</p>
 
-<div class="card">
-<h1>📸 InstaHeadshots Profile Upgrade Tracker</h1>
-<p>Track your professional profile readiness score.</p>
+  <div class="card">
+    <div class="score">
+      <div class="label">Readiness Score</div>
+      <div class="value"><span id="score">0</span>%</div>
+    </div>
 
-<div class="score" id="score">0</div>
+    <label><input type="checkbox" class="task" data-key="light"> I have bright, natural lighting</label>
+    <label><input type="checkbox" class="task" data-key="angles"> I have multiple face angles</label>
+    <label><input type="checkbox" class="task" data-key="clear"> My photos are sharp, not blurry</label>
+    <label><input type="checkbox" class="task" data-key="neutral"> I included neutral expressions</label>
+    <label><input type="checkbox" class="task" data-key="outfit"> I picked a professional outfit style</label>
 
-<label class="check"><input type="checkbox" class="item"> Updated LinkedIn profile photo</label>
-<label class="check"><input type="checkbox" class="item"> Updated resume photo</label>
-<label class="check"><input type="checkbox" class="item"> Updated company profile</label>
-<label class="check"><input type="checkbox" class="item"> Updated social profiles</label>
-<label class="check"><input type="checkbox" class="item"> Added professional banner</label>
+    <select id="goal">
+      <option value="LinkedIn refresh">LinkedIn refresh</option>
+      <option value="Resume photo">Resume photo</option>
+      <option value="Founder profile">Founder profile</option>
+      <option value="Team bio page">Team bio page</option>
+      <option value="Portfolio headshot">Portfolio headshot</option>
+    </select>
 
-<button class="primary" onclick="saveProgress()">Save Progress</button>
+    <button id="saveBtn">Save My Prep</button>
+    <button class="reset" id="resetBtn">Reset checklist</button>
+    <div class="tip" id="tip"></div>
+  </div>
 
-<a class="cta" href="https://instaheadshots.com?via=affinco" target="_blank" rel="noopener sponsored">
-🎁 Try InstaHeadshots Today
-</a>
+  <a class="cta" href="https://tinyurl.com/3dmhp2vf" target="_blank" rel="noopener sponsored">
+    🎁 Get InstaHeadshots: No-code deal + free preview →
+  </a>
 
-</div>
+  <footer>
+    Built for people preparing InstaHeadshots photos. This page contains an affiliate link — we may earn a commission at no extra cost to you. Not affiliated with or endorsed by InstaHeadshots.
+  </footer>
 
-<footer>
-Affiliate disclosure: This page contains affiliate links. We may earn a commission at no extra cost to you. Not affiliated with or endorsed by InstaHeadshots.
-</footer>
+  <script>
+    const tasks = Array.from(document.querySelectorAll(".task"));
+    const scoreEl = document.getElementById("score");
+    const tipEl = document.getElementById("tip");
+    const goalEl = document.getElementById("goal");
 
-<script>
-const items=document.querySelectorAll('.item');
-const score=document.getElementById('score');
+    function render(){
+      let done = tasks.filter(t => t.checked).length;
+      let score = Math.round((done / tasks.length) * 100);
+      scoreEl.textContent = score;
+      localStorage.setItem("insta_goal", goalEl.value);
 
-function updateScore(){
-let total=0;
-items.forEach(i=>{if(i.checked) total+=20;});
-score.textContent=total;
-}
+      if(score === 100){
+        tipEl.textContent = "Ready for " + goalEl.value + ". Generate your headshots and preview before paying.";
+      } else if(score >= 60){
+        tipEl.textContent = "Almost ready. Add more clear angles and lighting variety for better results.";
+      } else {
+        tipEl.textContent = "Start with sharp, well-lit selfies. Better inputs usually mean better headshots.";
+      }
+    }
 
-function saveProgress(){
-const state=[];
-items.forEach(i=>state.push(i.checked));
-localStorage.setItem('instaheadshotsTracker',JSON.stringify(state));
-updateScore();
-alert('Progress saved!');
-}
+    function load(){
+      tasks.forEach(t => {
+        t.checked = localStorage.getItem("insta_" + t.dataset.key) === "true";
+      });
+      goalEl.value = localStorage.getItem("insta_goal") || "LinkedIn refresh";
+      render();
+    }
 
-function loadProgress(){
-const data=JSON.parse(localStorage.getItem('instaheadshotsTracker')||'[]');
-items.forEach((i,index)=>{
-i.checked=data[index]||false;
-i.addEventListener('change',updateScore);
-});
-updateScore();
-}
+    tasks.forEach(t => {
+      t.addEventListener("change", () => {
+        localStorage.setItem("insta_" + t.dataset.key, t.checked);
+        render();
+      });
+    });
 
-loadProgress();
-</script>
+    goalEl.addEventListener("change", render);
 
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      render();
+      tipEl.textContent = "Saved. Your " + goalEl.value + " prep checklist will stay in this browser.";
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if(!confirm("Reset your InstaHeadshots prep checklist?")) return;
+      tasks.forEach(t => {
+        t.checked = false;
+        localStorage.removeItem("insta_" + t.dataset.key);
+      });
+      localStorage.removeItem("insta_goal");
+      goalEl.value = "LinkedIn refresh";
+      render();
+    });
+
+    load();
+  </script>
 </body>
 </html>
