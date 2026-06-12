@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaHeadshots Profile Upgrade Tracker</title>
+<meta name="description" content="Free personal branding tracker for professionals using InstaHeadshots.">
+<style>
+:root{
+--bg:#0f172a;
+--card:#1e293b;
+--line:#334155;
+--text:#f1f5f9;
+--muted:#94a3b8;
+--accent:#22c55e;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+background:var(--bg);
+font-family:Arial,sans-serif;
+color:var(--text);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:24px;
+min-height:100vh;
+}
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:24px;
+max-width:450px;
+width:100%;
+}
+h1{text-align:center}
+p{text-align:center;color:var(--muted)}
+.score{
+font-size:48px;
+font-weight:bold;
+text-align:center;
+margin:15px 0;
+}
+.check{
+display:block;
+margin:10px 0;
+}
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+.primary{
+background:var(--accent);
+}
+.cta{
+display:block;
+margin-top:18px;
+text-decoration:none;
+background:#22c55e;
+color:#000;
+padding:14px;
+text-align:center;
+border-radius:10px;
+font-weight:bold;
+}
+footer{
+margin-top:20px;
+font-size:12px;
+color:var(--muted);
+text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>📸 InstaHeadshots Profile Upgrade Tracker</h1>
+<p>Track your professional profile readiness score.</p>
+
+<div class="score" id="score">0</div>
+
+<label class="check"><input type="checkbox" class="item"> Updated LinkedIn profile photo</label>
+<label class="check"><input type="checkbox" class="item"> Updated resume photo</label>
+<label class="check"><input type="checkbox" class="item"> Updated company profile</label>
+<label class="check"><input type="checkbox" class="item"> Updated social profiles</label>
+<label class="check"><input type="checkbox" class="item"> Added professional banner</label>
+
+<button class="primary" onclick="saveProgress()">Save Progress</button>
+
+<a class="cta" href="https://instaheadshots.com?via=affinco" target="_blank" rel="noopener sponsored">
+🎁 Try InstaHeadshots Today
+</a>
+
+</div>
+
+<footer>
+Affiliate disclosure: This page contains affiliate links. We may earn a commission at no extra cost to you. Not affiliated with or endorsed by InstaHeadshots.
+</footer>
+
+<script>
+const items=document.querySelectorAll('.item');
+const score=document.getElementById('score');
+
+function updateScore(){
+let total=0;
+items.forEach(i=>{if(i.checked) total+=20;});
+score.textContent=total;
+}
+
+function saveProgress(){
+const state=[];
+items.forEach(i=>state.push(i.checked));
+localStorage.setItem('instaheadshotsTracker',JSON.stringify(state));
+updateScore();
+alert('Progress saved!');
+}
+
+function loadProgress(){
+const data=JSON.parse(localStorage.getItem('instaheadshotsTracker')||'[]');
+items.forEach((i,index)=>{
+i.checked=data[index]||false;
+i.addEventListener('change',updateScore);
+});
+updateScore();
+}
+
+loadProgress();
+</script>
+
+</body>
+</html>
